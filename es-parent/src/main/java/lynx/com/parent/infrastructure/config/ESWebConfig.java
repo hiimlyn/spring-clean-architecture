@@ -1,0 +1,20 @@
+package lynx.com.parent.infrastructure.config;
+
+import lombok.AllArgsConstructor;
+import lynx.com.parent.infrastructure.interceptor.ESTraceIdInterceptor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+@AllArgsConstructor
+public class ESWebConfig implements WebMvcConfigurer {
+
+    private final ESTraceIdInterceptor traceIdInterceptor;
+
+    @Override
+    public void addInterceptors(@SuppressWarnings("null") InterceptorRegistry registry) {
+        registry.addInterceptor(traceIdInterceptor)
+                .addPathPatterns("/**");
+    }
+}

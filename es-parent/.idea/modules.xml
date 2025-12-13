@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1826600313/parent.api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1826600313/parent.api.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1391060803/parent.application.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1391060803/parent.application.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1042277982/parent.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1042277982/parent.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1070895415/parent.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1070895415/parent.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1569218794/parent.infrastructure.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1569218794/parent.infrastructure.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parent.main.iml" filepath="$PROJECT_DIR$/.idea/modules/parent.main.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+POST http://localhost:8080/book
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-11-30T010100.500.json
+
+###
+

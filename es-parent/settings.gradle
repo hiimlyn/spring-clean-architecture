@@ -1,0 +1,13 @@
+rootProject.name = 'parent'
+include 'common'
+include 'api'
+include 'application'
+include 'domain'
+include 'infrastructure'
+
+
+project(':common').projectDir = new File('../es-common')
+project(':api').projectDir = new File('../es-api')
+project(':application').projectDir = new File('../es-application')
+project(':domain').projectDir = new File('../es-domain')
+project(':infrastructure').projectDir = new File('../es-infrastructure')
