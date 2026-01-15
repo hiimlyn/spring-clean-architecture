@@ -13,7 +13,7 @@ public class ESWebConfig implements WebMvcConfigurer {
     private final ESTraceIdInterceptor traceIdInterceptor;
 
     @Override
-    public void addInterceptors(@SuppressWarnings("null") InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(traceIdInterceptor)
                 .addPathPatterns("/**");
     }

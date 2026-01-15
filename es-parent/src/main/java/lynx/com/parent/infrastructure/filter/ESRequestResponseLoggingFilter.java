@@ -26,7 +26,7 @@ public class ESRequestResponseLoggingFilter extends OncePerRequestFilter {
     private static final String TRACE_ID_MDC_KEY = "traceId";
 
     @Override
-    protected void doFilterInternal(@SuppressWarnings("null") HttpServletRequest request, @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         String traceId = resolveOrCreateTraceId(request);

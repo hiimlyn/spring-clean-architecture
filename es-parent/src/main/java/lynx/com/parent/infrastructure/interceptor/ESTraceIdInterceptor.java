@@ -1,6 +1,5 @@
 package lynx.com.parent.infrastructure.interceptor;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.MDC;
@@ -16,8 +15,8 @@ public class ESTraceIdInterceptor implements HandlerInterceptor {
     private static final String TRACE_ID_MDC_KEY = "traceId";
 
     @Override
-    public boolean preHandle(@SuppressWarnings("null") HttpServletRequest request,
-                             @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") Object handler) {
+    public boolean preHandle(HttpServletRequest request,
+            HttpServletResponse response, Object handler) {
         String traceId = MDC.get(TRACE_ID_MDC_KEY);
         if (traceId == null || traceId.isEmpty()) {
             traceId = request.getHeader(TRACE_ID_HEADER);
@@ -31,9 +30,9 @@ public class ESTraceIdInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(@SuppressWarnings("null") HttpServletRequest request,
-                                @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") Object handler,
-                                @SuppressWarnings("null") Exception ex) {
+    public void afterCompletion(HttpServletRequest request,
+            HttpServletResponse response, Object handler,
+            Exception ex) {
         // clear trace id
     }
 
