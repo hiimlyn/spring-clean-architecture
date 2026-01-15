@@ -1,1 +1,50 @@
-description = 'application'
+/*
+ * APPLICATION MODULE - Use Cases and Ports
+ * 
+ * RULES:
+ * - Contains use case implementations
+ * - Defines input/output ports (interfaces)
+ * - Depends on domain module
+ * - NO Spring Boot plugin (uses java-library)
+ * - Can use Spring annotations for DI only
+ * 
+ * DEPENDENCY: application → domain
+ * 
+ * IMPORTANT: Uses 'api' configuration for domain so that 
+ * infrastructure can see domain classes through application.
+ * But api module only gets 'implementation' exposure, blocking domain access.
+ */
+
+plugins {
+    id 'java-library'
+}
+
+description = 'application - Use cases and ports'
+
+dependencies {
+    // Domain exposed via 'api' so infrastructure can access it
+    // through application module
+    api project(':domain')
+    
+    // Common utilities
+    implementation project(':common')
+    
+    // Spring context for @Service, @Component annotations only
+    // NO Spring Boot starter here
+    implementation 'org.springframework:spring-context:6.2.0'
+    implementation 'org.springframework:spring-tx:6.2.0'
+    
+    // MapStruct for mapping between domain and DTOs
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    
+    // Lombok for DTOs and services (convenience)
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

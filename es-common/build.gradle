@@ -1,1 +1,42 @@
-description = 'common'
+/*
+ * COMMON MODULE - Shared Primitives Only
+ * 
+ * RULES:
+ * - MUST NOT depend on domain or application
+ * - Contains ONLY generic utilities
+ * - Contains ONLY shared primitives
+ * - NO business logic
+ * - NO domain leakage
+ * 
+ * Examples of allowed content:
+ * - Utility classes (StringUtils, DateUtils)
+ * - Generic exceptions
+ * - Constants
+ * - Shared annotations (non-business)
+ * - Shared DTOs (response wrappers, etc.)
+ */
+
+plugins {
+    id 'java-library'
+}
+
+description = 'common - Shared primitives only'
+
+dependencies {
+    // NO project dependencies allowed
+    // This module is at the bottom of the dependency hierarchy
+    
+    // Logging
+    api 'org.slf4j:slf4j-api:2.0.12'
+    
+    // Jackson for shared response DTOs
+    api 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
+    
+    // Lombok for shared DTOs (compileOnly + annotationProcessor)
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

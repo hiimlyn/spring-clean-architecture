@@ -1,0 +1,29 @@
+/*
+ * DOMAIN MODULE - Pure Java Business Core
+ * 
+ * RULES:
+ * - NO Spring annotations
+ * - NO JPA annotations  
+ * - NO Lombok annotations (preferred)
+ * - NO external framework dependencies
+ * - Only pure Java business logic
+ * 
+ * This module is the innermost layer of Clean Architecture.
+ * It should have ZERO dependencies on external frameworks.
+ */
+
+plugins {
+    id 'java-library'
+}
+
+description = 'domain - Pure Java business core'
+
+dependencies {
+    // Domain has NO external dependencies
+    // Only common module for shared primitives (if needed)
+    api project(':common')
+    
+    // Testing only
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

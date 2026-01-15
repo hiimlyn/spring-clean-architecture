@@ -1,13 +1,24 @@
+/*
+ * Settings for Clean Architecture Multi-Module Project
+ * 
+ * Module Hierarchy:
+ * - domain: Pure Java business core (NO Spring, NO JPA, NO Lombok)
+ * - application: Use cases and ports (depends on domain)
+ * - api: REST controllers (depends on application ONLY, NOT domain)
+ * - infrastructure: JPA, DB, external systems (depends on application, domain)
+ * - common: Shared primitives only (NO domain leakage)
+ */
+
 rootProject.name = 'parent'
+
 include 'common'
-include 'api'
-include 'application'
 include 'domain'
+include 'application'
+include 'api'
 include 'infrastructure'
 
-
 project(':common').projectDir = new File('../es-common')
-project(':api').projectDir = new File('../es-api')
-project(':application').projectDir = new File('../es-application')
 project(':domain').projectDir = new File('../es-domain')
+project(':application').projectDir = new File('../es-application')
+project(':api').projectDir = new File('../es-api')
 project(':infrastructure').projectDir = new File('../es-infrastructure')
