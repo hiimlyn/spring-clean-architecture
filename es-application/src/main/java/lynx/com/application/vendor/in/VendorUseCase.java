@@ -1,8 +1,7 @@
 package lynx.com.application.vendor.in;
 
-import lynx.com.application.vendor.dto.VendorDto;
-import lynx.com.application.vendor.dto.VendorRegisterRequest;
+import lynx.com.domain.vendor.Vendor;
 
 public interface VendorUseCase {
-     VendorDto registerVendor(VendorRegisterRequest request);
+     Vendor registerVendor(Vendor request);
 }

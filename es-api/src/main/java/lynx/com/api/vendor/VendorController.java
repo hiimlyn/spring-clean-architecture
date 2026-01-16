@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import lynx.com.application.vendor.dto.VendorRegisterRequest;
+import lynx.com.api.vendor.dto.VendorRegisterRequest;
+import lynx.com.api.vendor.dto.VendorRegisterResponse;
 import lynx.com.application.vendor.in.VendorUseCase;
 
 @AllArgsConstructor
@@ -17,8 +18,8 @@ public class VendorController {
 
     private final VendorUseCase vendorUseCase;
 
-    public ResponseEntity<String> registerVendor(@RequestBody VendorRegisterRequest request) {
-         vendorUseCase.registerVendor(request);
-         return ResponseEntity.status(Response.SC_CREATED).body("Vendor registered successfully");
+    public ResponseEntity<VendorRegisterResponse> registerVendor(@RequestBody VendorRegisterRequest request) {
+        //  vendorUseCase.registerVendor(request);
+         return ResponseEntity.status(Response.SC_CREATED).body(null);
     }
 }

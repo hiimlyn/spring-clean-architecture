@@ -1,11 +1,11 @@
 package lynx.com.infrastructure.vendor.persistence.mapper;
 
-import lynx.com.application.vendor.dto.VendorDto;
-import lynx.com.domain.vendor.Vendor;
-import lynx.com.infrastructure.vendor.persistence.entity.VendorJPAEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
+
+import lynx.com.domain.vendor.Vendor;
+import lynx.com.infrastructure.vendor.persistence.entity.VendorJPAEntity;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface VendorInfraMapper {
@@ -16,8 +16,6 @@ public interface VendorInfraMapper {
     @Mapping(target = "companyAddress.country", source = "companyAddressCountry")
     Vendor toDomain(VendorJPAEntity entity);
 
-    @Mapping(target = "address", source = "companyAddress")
-    VendorDto toDto(Vendor vendor);
 
     @Mapping(target = "companyAddressStreet", source = "companyAddress.street")
     @Mapping(target = "companyAddressCity", source = "companyAddress.city")
