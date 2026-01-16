@@ -2,6 +2,7 @@ package lynx.com.application.booking.port.out;
 
 
 import lynx.com.domain.booking.Ticket;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

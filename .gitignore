@@ -183,3 +183,6 @@ desktop.ini
 **/bin/
 **/build/
 **/.gradle/
+**/gradle
+**/.idea
+**/logs

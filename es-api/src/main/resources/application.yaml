@@ -5,6 +5,9 @@ spring:
     drop-first: false
     contexts: dev
     default-schema: public
+  docker:
+    compose:
+      enabled: false
 logging:
   level:
     root: INFO

@@ -22,9 +22,9 @@ plugins {
 description = 'api - REST controllers and main application'
 
 dependencies {
-    // Infrastructure module (which transitively provides application and domain)
-    implementation project(':infrastructure')
-    
+    // Infrastructure module for port implementations (JPA repositories)
+    runtimeOnly(project(':infrastructure'))
+
     // Application module for use cases
     implementation(project(':application')) {
         // Explicitly exclude transitive domain dependency
@@ -39,6 +39,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    runtimeOnly 'org.postgresql:postgresql'
     
     // Development
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'

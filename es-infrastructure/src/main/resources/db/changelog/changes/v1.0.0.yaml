@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1764439121708-1
+      id: 1.0.0-1
       author: lyn (generated)
       changes:
         - createTable:
@@ -29,7 +29,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: es_events
   - changeSet:
-      id: 1764439121708-2
+      id: 1.0.0-2
       author: lyn (generated)
       changes:
         - createTable:
@@ -55,7 +55,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: es_ticket_class
   - changeSet:
-      id: 1764439121708-3
+      id: 1.0.0-3
       author: lyn (generated)
       changes:
         - createTable:
@@ -74,7 +74,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: es_tickets
   - changeSet:
-      id: 1764439121708-4
+      id: 1.0.0-4
       author: lyn (generated)
       changes:
         - addForeignKeyConstraint:
@@ -87,7 +87,7 @@ databaseChangeLog:
             referencedTableName: es_events
             validate: true
   - changeSet:
-      id: 1764439121708-5
+      id: 1.0.0-5
       author: lyn (generated)
       changes:
         - addForeignKeyConstraint:
@@ -98,4 +98,52 @@ databaseChangeLog:
             initiallyDeferred: false
             referencedColumnNames: id
             referencedTableName: es_events
+            validate: true
+  - changeSet:
+      id: 1.0.0-6
+      author: lyn
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: es_vendorPK
+                  name: id
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: company_address_street
+                  type: VARCHAR(255)
+              - column:
+                  name: company_address_city
+                  type: VARCHAR(255)
+              - column:
+                  name: company_address_state
+                  type: VARCHAR(255)
+              - column:
+                  name: company_address_zip_code
+                  type: VARCHAR(255)
+              - column:
+                  name: company_address_country
+                  type: VARCHAR(255)
+            tableName: es_vendor
+  - changeSet:
+      id: 1.0.0-7
+      author: lyn
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: vendor_id
+            baseTableName: es_events
+            constraintName: FK_events_vendor
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: es_vendor
             validate: true

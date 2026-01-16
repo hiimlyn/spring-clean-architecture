@@ -33,7 +33,7 @@ description = 'infrastructure - JPA, database, external systems'
 dependencies {
     // Application module (which transitively exposes domain via 'api')
     implementation project(':application')
-    
+
     // Direct domain access for entity mapping
     implementation project(':domain')
     
