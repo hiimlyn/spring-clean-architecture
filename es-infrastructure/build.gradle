@@ -90,7 +90,7 @@ liquibase {
     activities {
         main {
             changelogFile 'db/changelog/db.changelog-master.yaml'
-            url 'jdbc:postgresql://localhost:5432/postgres'
+            url 'jdbc:postgresql://localhost:5435/postgres'
             username 'postgres'
             password 'postgres'
             driver 'org.postgresql.Driver'
@@ -99,7 +99,7 @@ liquibase {
         }
         generateChangelog {
             changelogFile "src/main/resources/db/changelog/changes/generated-${new Date().format('yyyyMMdd-HHmmss')}.yaml"
-            url 'jdbc:postgresql://localhost:5432/postgres'
+            url 'jdbc:postgresql://localhost:5435/postgres'
             username 'postgres'
             password 'postgres'
             driver 'org.postgresql.Driver'
@@ -108,7 +108,7 @@ liquibase {
         }
         diffChangeLog {
             changelogFile "src/main/resources/db/changelog/changes/diff-${new Date().format('yyyyMMdd-HHmmss')}.yaml"
-            url 'jdbc:postgresql://localhost:5432/postgres'
+            url 'jdbc:postgresql://localhost:5435/postgres'
             username 'postgres'
             password 'postgres'
             driver 'org.postgresql.Driver'

@@ -9,7 +9,7 @@
  * - common: Shared primitives only (NO domain leakage)
  */
 
-rootProject.name = 'parent'
+rootProject.name = 'es'
 
 include 'common'
 include 'domain'
@@ -17,8 +17,8 @@ include 'application'
 include 'api'
 include 'infrastructure'
 
-project(':common').projectDir = new File('../es-common')
-project(':domain').projectDir = new File('../es-domain')
-project(':application').projectDir = new File('../es-application')
-project(':api').projectDir = new File('../es-api')
-project(':infrastructure').projectDir = new File('../es-infrastructure')
+project(':common').projectDir = file('es-common')
+project(':domain').projectDir = file('es-domain')
+project(':application').projectDir = file('es-application')
+project(':api').projectDir = file('es-api')
+project(':infrastructure').projectDir = file('es-infrastructure')
