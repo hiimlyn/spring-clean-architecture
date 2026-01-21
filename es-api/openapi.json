@@ -1,0 +1,290 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API Documentation",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/bookings/book" : {
+      "post" : {
+        "summary" : "book",
+        "description" : "book",
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bookings/ticket/create" : {
+      "post" : {
+        "summary" : "createTicket",
+        "description" : "createTicket",
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "data" : {
+                      "type" : "object",
+                      "properties" : { },
+                      "description" : ""
+                    },
+                    "errorCode" : {
+                      "type" : "integer",
+                      "description" : ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vendors/register" : {
+      "post" : {
+        "summary" : "registerVendor",
+        "description" : "registerVendor",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "companyAddress" : {
+                    "type" : "object",
+                    "properties" : {
+                      "street" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "city" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "state" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "zipCode" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "country" : {
+                        "type" : "string",
+                        "description" : ""
+                      }
+                    },
+                    "description" : ""
+                  }
+                },
+                "description" : ""
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "id" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "name" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "description" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "companyAddress" : {
+                      "type" : "object",
+                      "properties" : {
+                        "street" : {
+                          "type" : "string",
+                          "description" : ""
+                        },
+                        "city" : {
+                          "type" : "string",
+                          "description" : ""
+                        },
+                        "state" : {
+                          "type" : "string",
+                          "description" : ""
+                        },
+                        "zipCode" : {
+                          "type" : "string",
+                          "description" : ""
+                        },
+                        "country" : {
+                          "type" : "string",
+                          "description" : ""
+                        }
+                      },
+                      "description" : ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/(\"/events\")/create" : {
+      "post" : {
+        "summary" : "createEvent",
+        "description" : "createEvent",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "vendorId" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "startDate" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "endDate" : {
+                    "type" : "string",
+                    "description" : ""
+                  },
+                  "address" : {
+                    "type" : "object",
+                    "properties" : {
+                      "street" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "city" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "state" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "zipCode" : {
+                        "type" : "string",
+                        "description" : ""
+                      },
+                      "country" : {
+                        "type" : "string",
+                        "description" : ""
+                      }
+                    },
+                    "description" : ""
+                  }
+                },
+                "description" : ""
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "description" : ""
+                    },
+                    "data" : {
+                      "type" : "object",
+                      "properties" : { },
+                      "description" : ""
+                    },
+                    "errorCode" : {
+                      "type" : "integer",
+                      "description" : ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "java.lang.Object" : {
+        "type" : "object",
+        "properties" : { },
+        "description" : ""
+      },
+      "lynx.com.common.entities.Address" : {
+        "type" : "object",
+        "properties" : {
+          "street" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "city" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "state" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "zipCode" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "country" : {
+            "type" : "string",
+            "description" : ""
+          }
+        },
+        "description" : ""
+      }
+    }
+  }
+}

@@ -6,9 +6,12 @@ import lombok.Data;
 
 @Data
 @Builder
-@JsonInclude(content = JsonInclude.Include.NON_NULL)
-public class ESBaseResponse {
+public class ESBaseResponse<T> {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
-    private Object data;
+
+    private T data;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer errorCode;
 }
