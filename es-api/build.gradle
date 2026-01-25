@@ -23,7 +23,8 @@ description = 'api - REST controllers and main application'
 
 dependencies {
     // Infrastructure module for port implementations (JPA repositories)
-    runtimeOnly(project(':infrastructure'))
+    // Changed to implementation to include resources (Liquibase changelogs)
+    implementation(project(':infrastructure'))
 
     // Application module for use cases
     implementation(project(':application')) {

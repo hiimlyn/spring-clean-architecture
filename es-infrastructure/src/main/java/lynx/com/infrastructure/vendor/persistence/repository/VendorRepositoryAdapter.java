@@ -3,9 +3,14 @@ package lynx.com.infrastructure.vendor.persistence.repository;
 import lombok.AllArgsConstructor;
 import lynx.com.application.vendor.out.VendorRepositoryPort;
 import lynx.com.domain.vendor.Vendor;
+import lynx.com.infrastructure.vendor.persistence.entity.VendorJPAEntity;
 import lynx.com.infrastructure.vendor.persistence.mapper.VendorInfraMapper;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -23,5 +28,31 @@ public class VendorRepositoryAdapter implements VendorRepositoryPort {
     @Override
     public Vendor findById(String id) {
         return null;
+    }
+
+    @Override
+    public List<Vendor> findAll() {
+        return vendorJPARepository.findAll().stream()
+                .map(vendorInfraMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Vendor> findByParams(Vendor vendor) {
+        Specification<VendorJPAEntity> spec = Specification.unrestricted();
+
+        if (vendor.getName() != null) {
+            spec = spec.and((root, query, cb) ->
+                    cb.like(root.get("name"), "%" + vendor.getName() + "%"));
+        }
+
+        if (vendor.getCompanyAddress() != null && vendor.getCompanyAddress().getStreet() != null) {
+            spec = spec.and((root, query, cb) ->
+                    cb.equal(root.get("companyAddressStreet"), vendor.getCompanyAddress().getStreet()));
+        }
+
+        return vendorJPARepository.findAll(spec).stream()
+                .map(vendorInfraMapper::toDomain)
+                .collect(Collectors.toList());
     }
 }
