@@ -20,8 +20,8 @@ logging:
     org.apache.catalina: INFO
     lynx.com: INFO
     org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
-    org.hibernate.orm.jdbc.extract: TRACE
+    org.hibernate.orm.jdbc.bind: INFO
+    org.hibernate.orm.jdbc.extract: INFO
     org.springframework.jdbc.core: DEBUG
     org.springframework.boot.autoconfigure.liquibase: INFO
     liquibase: INFO

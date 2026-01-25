@@ -6,8 +6,11 @@ import lynx.com.domain.vendor.Vendor;
 import lynx.com.infrastructure.vendor.persistence.entity.VendorJPAEntity;
 import lynx.com.infrastructure.vendor.persistence.mapper.VendorInfraMapper;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +34,9 @@ public class VendorRepositoryAdapter implements VendorRepositoryPort {
     }
 
     @Override
-    public List<Vendor> findAll() {
-        return vendorJPARepository.findAll().stream()
+    public List<Vendor> findAll(int limit, int page) {
+        var pageable  = PageRequest.of(page, limit);
+        return vendorJPARepository.findAllByRemovedIsNullOrRemovedIsFalse(pageable).stream()
                 .map(vendorInfraMapper::toDomain)
                 .collect(Collectors.toList());
     }
@@ -55,4 +59,5 @@ public class VendorRepositoryAdapter implements VendorRepositoryPort {
                 .map(vendorInfraMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
 }

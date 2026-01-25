@@ -1,7 +1,7 @@
 package lynx.com.application.vendor.service;
 
 import lombok.AllArgsConstructor;
-import lynx.com.application.vendor.in.GetVendorsUseCase;
+import lynx.com.application.vendor.in.VendorFetchUseCase;
 import lynx.com.application.vendor.in.VendorQuery;
 import lynx.com.application.vendor.mapper.VendorApplicationMapper;
 import lynx.com.application.vendor.out.VendorRepositoryPort;
@@ -11,14 +11,15 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class GetVendorsService implements GetVendorsUseCase {
+public
+class VendorFetchService implements VendorFetchUseCase {
 
     private final VendorRepositoryPort vendorRepository;
     private final VendorApplicationMapper vendorMapper;
 
     @Override
-    public List<VendorQuery> getAllVendors() {
-        var vendors = vendorRepository.findAll();
+    public List<VendorQuery> getAllVendors(int limit, int page) {
+        var vendors = vendorRepository.findAll(limit, page);
         return vendorMapper.toQueryList(vendors);
     }
 

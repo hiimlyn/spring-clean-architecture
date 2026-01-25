@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity(name = "es_vendor")
 @Getter
 @Setter
@@ -28,4 +30,13 @@ public class VendorJPAEntity {
 
     @Column(name = "company_address_country")
     private String companyAddressCountry;
+
+    @Column(name = "is_removed", columnDefinition = " boolean default false" )
+    private Boolean removed;
+
+    @Column(name = "removed_by", length = 30)
+    private String removedBy;
+
+    @Column(name = "removed_date")
+    private LocalDateTime removedDate;
 }

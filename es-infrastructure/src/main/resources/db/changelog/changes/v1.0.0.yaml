@@ -147,3 +147,33 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: es_vendor
             validate: true
+  - changeSet:
+      id: 1.0.0-8
+      author: lyn
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+          - columnExists:
+              tableName: es_vendor
+              columnName: is_remove
+              defaultValueBoolean: false
+          - columnExists:
+              tableName: es_vendor
+              columnName: remove_date
+          - columnExists:
+              tableName: es_vendor
+              columnName: remove_by
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+      - addColumn:
+          columns:
+            - column:
+                name: is_removed
+                type: BOOLEAN
+            - column:
+                name: removed_by
+                type: VARCHAR(30)
+            - column:
+                name: removed_date
+                type: DATETIME
+          tableName: es_vendor

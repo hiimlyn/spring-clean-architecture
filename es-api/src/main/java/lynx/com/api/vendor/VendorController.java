@@ -1,20 +1,19 @@
 package lynx.com.api.vendor;
 
-import lynx.com.api.vendor.dto.VendorResponse;
-import lynx.com.api.vendor.mapper.VendorApiMapper;
-import lynx.com.application.vendor.in.VendorQuery;
-import lynx.com.common.entities.Address;
-import lynx.com.common.entities.ESBaseResponse;
-import org.apache.catalina.connector.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import lombok.AllArgsConstructor;
 import lynx.com.api.vendor.dto.VendorRegisterRequest;
 import lynx.com.api.vendor.dto.VendorRegisterResponse;
-import lynx.com.application.vendor.in.GetVendorsUseCase;
+import lynx.com.api.vendor.dto.VendorResponse;
+import lynx.com.api.vendor.mapper.VendorApiMapper;
+import lynx.com.application.vendor.in.VendorFetchUseCase;
+import lynx.com.application.vendor.in.VendorQuery;
 import lynx.com.application.vendor.in.VendorRegisterUseCase;
+import lynx.com.application.vendor.in.VendorRemoveUseCase;
+import lynx.com.common.entities.Address;
+import lynx.com.common.entities.ESBaseResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,24 +23,14 @@ import java.util.List;
 public class VendorController {
 
     private final VendorRegisterUseCase vendorRegisterUseCase;
-    private final GetVendorsUseCase getVendorsUseCase;
+    private final VendorFetchUseCase vendorFetchUseCase;
+    private final VendorRemoveUseCase vendorRemoveUseCase;
     private final VendorApiMapper vendorApiMapper;
 
-    @PostMapping("/register")
-    public ResponseEntity<ESBaseResponse<VendorRegisterResponse>> registerVendor(@RequestBody VendorRegisterRequest request) {
-
-        var vendorRegisterCommand = vendorApiMapper.toRegisterCommand(request);
-        var vendorRegistered = vendorRegisterUseCase.register(vendorRegisterCommand);
-        ESBaseResponse<VendorRegisterResponse> response = ESBaseResponse.<VendorRegisterResponse>builder()
-                .data(vendorApiMapper.toRegisterResponse(vendorRegistered))
-                .build();
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
     @GetMapping
-    public ResponseEntity<ESBaseResponse<List<VendorResponse>>> getVendors() {
-        var vendors = getVendorsUseCase.getAllVendors();
+    public ResponseEntity<ESBaseResponse<List<VendorResponse>>> getVendors(@RequestParam(required = false, defaultValue = "50") int limit,
+                                                                           @RequestParam(required = false, defaultValue = "0") int page) {
+        var vendors = vendorFetchUseCase.getAllVendors(limit, page);
         ESBaseResponse<List<VendorResponse>> response = ESBaseResponse.<List<VendorResponse>>builder()
                 .data(vendorApiMapper.toVendorResponseList(vendors))
                 .build();
@@ -67,10 +56,31 @@ public class VendorController {
                                 .build()
                 )
                 .build();
-        var vendors = getVendorsUseCase.getVendorsByParams(vendorQuery);
+        var vendors = vendorFetchUseCase.getVendorsByParams(vendorQuery);
         ESBaseResponse<List<VendorResponse>> response = ESBaseResponse.<List<VendorResponse>>builder()
                 .data(vendorApiMapper.toVendorResponseList(vendors))
                 .build();
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<ESBaseResponse<VendorRegisterResponse>> registerVendor(@RequestBody VendorRegisterRequest request) {
+
+        var vendorRegisterCommand = vendorApiMapper.toRegisterCommand(request);
+        var vendorRegistered = vendorRegisterUseCase.register(vendorRegisterCommand);
+        ESBaseResponse<VendorRegisterResponse> response = ESBaseResponse.<VendorRegisterResponse>builder()
+                .data(vendorApiMapper.toRegisterResponse(vendorRegistered))
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity<ESBaseResponse<Boolean>> softRemoveVendor(@PathVariable String id) {
+        var isRemoved = vendorRemoveUseCase.softRemove(id);
+        ESBaseResponse<Boolean> response = ESBaseResponse.<Boolean>builder()
+                .data(isRemoved)
+                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

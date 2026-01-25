@@ -2,7 +2,7 @@ package lynx.com.application.vendor.in;
 
 import java.util.List;
 
-public interface GetVendorsUseCase {
-    List<VendorQuery> getAllVendors();
+public interface VendorFetchUseCase {
+    List<VendorQuery> getAllVendors(int limit, int page);
     List<VendorQuery> getVendorsByParams(VendorQuery vendorQuery);
 }

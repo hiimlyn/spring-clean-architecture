@@ -1,6 +1,8 @@
 package lynx.com.domain.vendor;
 
 import lynx.com.common.entities.Address;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -12,14 +14,21 @@ public class Vendor {
     private String name;
     private String description;
     private Address companyAddress;
+    private Boolean removed;
+    private String removedBy;
+    private LocalDateTime removedDate;
 
-    public Vendor() {}
+    public Vendor() {
+    }
 
-    public Vendor(String id, String name, String description, Address companyAddress) {
+    public Vendor(String id, String name, String description, Address companyAddress, Boolean removed, String removedBy, LocalDateTime removedDate) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.companyAddress = companyAddress;
+        this.removed = removed;
+        this.removedBy = removedBy;
+        this.removedDate = removedDate;
     }
 
     public String getId() {
@@ -54,26 +63,27 @@ public class Vendor {
         this.companyAddress = companyAddress;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vendor vendor = (Vendor) o;
-        return Objects.equals(id, vendor.id);
+    public Boolean getRemoved() {
+        return removed;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
     }
 
-    @Override
-    public String toString() {
-        return "Vendor{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", companyAddress=" + companyAddress +
-                '}';
+    public String getRemovedBy() {
+        return removedBy;
+    }
+
+    public void setRemovedBy(String removedBy) {
+        this.removedBy = removedBy;
+    }
+
+    public LocalDateTime getRemovedDate() {
+        return removedDate;
+    }
+
+    public void setRemovedDate(LocalDateTime removedDate) {
+        this.removedDate = removedDate;
     }
 }
